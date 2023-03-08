@@ -610,7 +610,7 @@ static MQTTStatus_t processCommand( MQTTAgentContext_t * pMqttAgentContext,
             {
                 operationStatus = MQTT_ProcessLoop( &( pMqttAgentContext->mqttContext ) );
             }
-        } while( pMqttAgentContext->packetReceivedInLoop );
+        } while( pMqttAgentContext->packetReceivedInLoop || ( operationStatus == MQTTNeedMoreBytes ) );
     }
 
     /* Set the flag to break from the command loop. */
